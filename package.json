@@ -1,0 +1,41 @@
+{
+  "name": "rosary",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "16.3.2",
+    "bootstrap": "4.1.1",
+    "mousetrap": "1.6.1",
+    "popper.js": "1.14.3",
+    "react-dom": "16.3.2",
+    "bootswatch": "4.1.1",
+    "prop-types": "15.6.1",
+    "reactstrap": "6.0.1",
+    "react-popper": "0.10.4",
+    "react-transition-group": "2.3.1",
+    "@fortawesome/fontawesome": "1.1.8",
+    "@fortawesome/react-fontawesome": "0.0.20",
+    "@fortawesome/fontawesome-free-solid": "5.0.13"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
