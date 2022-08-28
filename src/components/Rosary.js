@@ -1,6 +1,5 @@
 export default class Rosary {
-  fullImgUrlTemplate = "http://via.placeholder.com/1280x720?text=${MYSTERY}%20${NUMBER}";
-  thumbUrlTemplate = "http://via.placeholder.com/640x360?text=${CATEGORY}%20${NUMBER}";
+  imgUrlTemplate = "https://i.ensl.ee/cdn-cgi/imagedelivery/nrDxkOKXwTWQqwFQgJIvZQ/${CATEGORY}/${MYSTERY}/${NUMBER}/${VARIANT}";
   rosary = {
     Glorious: {
       days: ["Sunday", "Wednesday"],
@@ -168,17 +167,23 @@ export default class Rosary {
     return "";
   }
 
-  getThumbSource(category, number) {
-    return this.thumbUrlTemplate.replace("${CATEGORY}", category.toLowerCase()).replace("${NUMBER}", number);
+  getThumbSource(category, mystery, number) {
+    return this.imgUrlTemplate
+      .replace("${CATEGORY}", category.toLowerCase())
+      .replace("${MYSTERY}", mystery)
+      .replace("${NUMBER}", number)
+      .replace('${VARIANT}', 'f');
   }
 
   getCategories() {
-    let categories = [];
+    let categories = [],
+      mystery;
     for (var i in this.rosary) {
+      mystery = this.rosary[i].mysteries[randomNumber(0, 4)];
       categories.push({
         name: i,
         days: this.rosary[i].days,
-        src: this.getThumbSource(i, randomNumber(1, 5)),
+        src: this.getThumbSource(i, mystery.path, randomNumber(1, mystery.images)),
       });
     }
 
@@ -186,10 +191,11 @@ export default class Rosary {
   }
 
   getFullSource(category, mystery, number) {
-    return this.fullImgUrlTemplate
+    return this.imgUrlTemplate
       .replace("${CATEGORY}", category.toLowerCase())
       .replace("${MYSTERY}", mystery)
-      .replace("${NUMBER}", number);
+      .replace("${NUMBER}", number)
+      .replace('${VARIANT}', 'q');
   }
 
   getMysteries(category, cycle, names, meditations) {
