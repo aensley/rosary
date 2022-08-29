@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Pray the Rosary",
+  "short_name": "Pray the Rosary",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Pray the Rosary",
+  "icons": [{
+    "src": "/favicon.svg",
+    "sizes": "any",
+    "type": "image/svg+xml"
+  }, {
+    "src": "/favicon.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}

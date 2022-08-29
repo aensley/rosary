@@ -1,42 +1,42 @@
 export default class Rosary {
-  imgUrlTemplate = "https://i.ensl.ee/cdn-cgi/imagedelivery/nrDxkOKXwTWQqwFQgJIvZQ/${CATEGORY}/${MYSTERY}/${NUMBER}/${VARIANT}";
+  imgUrlTemplate = "https://i.ensl.ee/cdn-cgi/imagedelivery/nrDxkOKXwTWQqwFQgJIvZQ/rosary/${CATEGORY}/${MYSTERY}/${NUMBER}.jpg/${VARIANT}";
   rosary = {
     Glorious: {
       days: ["Sunday", "Wednesday"],
       mysteries: [
         {
-          path: "1-resurrection",
+          path: "resurrection",
           name: "The Resurrection",
           meditation: '"He is not here; for He has been raised, as He said. Come, see the place where He lay."',
-          images: 10,
+          images: 1,
         },
         {
-          path: "2-ascension",
+          path: "ascension",
           name: "The Ascension",
           meditation:
             "When He had said this, as they were watching, He was lifted up, and a cloud took Him out of their sight. ",
-          images: 11,
+          images: 1,
         },
         {
-          path: "3-descent",
+          path: "descent",
           name: "The Descent of the Holy Spirit",
           meditation:
             "Tongues of fire appeared and rested on each of them. All of them were filled with the Holy Spirit.",
-          images: 7,
+          images: 1,
         },
         {
-          path: "4-assumption",
+          path: "assumption",
           name: "The Assumption of Mary",
           meditation:
             '"From now on all generations will call me blessed; for the Mighty One has done great things for me."',
-          images: 9,
+          images: 1,
         },
         {
-          path: "5-coronation",
+          path: "coronation",
           name: "The Coronation of Mary",
           meditation:
             "A great portent appeared in heaven: a woman clothed with the sun, with the moon under her feet, and on her head a crown of twelve stars.",
-          images: 9,
+          images: 1,
         },
       ],
     },
@@ -44,34 +44,34 @@ export default class Rosary {
       days: ["Monday", "Saturday"],
       mysteries: [
         {
-          path: "1-annunciation",
+          path: "annunciation",
           name: "The Annunciation",
           meditation: '"Behold, I am the handmaid of the Lord; let it be to me according to your word."',
-          images: 14,
+          images: 1,
         },
         {
-          path: "2-visitation",
+          path: "visitation",
           name: "The Visitation",
           meditation: '"And why is this granted me, that the mother of my Lord should come to me?"',
-          images: 7,
+          images: 1,
         },
         {
-          path: "3-nativity",
+          path: "nativity",
           name: "The Nativity",
           meditation: "She gave birth to Jesus, wrapped Him in swaddling cloths, and laid Him in a manger.",
-          images: 10,
+          images: 1,
         },
         {
-          path: "4-presentation",
+          path: "presentation",
           name: "The Presentation",
           meditation: "They took Him to the temple in Jerusalem to present Him to the Lord.",
-          images: 4,
+          images: 1,
         },
         {
-          path: "5-finding",
+          path: "finding",
           name: "The Finding of Jesus in the Temple",
           meditation: '"Why were you searching for me? Did you not know that I must be in my Father\'s house?"',
-          images: 4,
+          images: 1,
         },
       ],
     },
@@ -79,34 +79,34 @@ export default class Rosary {
       days: ["Tuesday", "Friday"],
       mysteries: [
         {
-          path: "1-agony",
+          path: "agony",
           name: "The Agony in the Garden",
           meditation: '"My Father, if it is possible, let this cup pass from Me; yet not as I will, but as You will."',
-          images: 7,
+          images: 1,
         },
         {
-          path: "2-scourging",
+          path: "scourging",
           name: "The Scourging at the Pillar",
           meditation: "Then Pilate took Jesus and scourged Him.",
-          images: 3,
+          images: 1,
         },
         {
-          path: "3-crowned",
+          path: "crowning",
           name: "The Crowning with Thorns",
           meditation: "And the soldiers twisted together a crown of thorns and put it on His head.",
-          images: 3,
+          images: 1,
         },
         {
-          path: "4-carries",
+          path: "carrying",
           name: "The Carrying of the Cross",
           meditation: "And carrying the cross Himself, He went out to Golgotha, the Place of the Skull.",
-          images: 6,
+          images: 1,
         },
         {
-          path: "5-crucifixion",
+          path: "crucifixion",
           name: "The Crucifixion",
           meditation: '"Father, into your hands I commend My spirit."',
-          images: 13,
+          images: 1,
         },
       ],
     },
@@ -114,36 +114,36 @@ export default class Rosary {
       days: ["Thursday"],
       mysteries: [
         {
-          path: "1-baptism",
+          path: "baptism",
           name: "The Baptism of Jesus in the River Jordan",
           meditation: '"This is My beloved Son, with whom I am well pleased."',
-          images: 9,
+          images: 1,
         },
         {
-          path: "2-wedding",
+          path: "wedding",
           name: "The Wedding Feast at Cana",
           meditation: 'Jesus said to them, "Fill the jars with water and take it to the chief steward."',
-          images: 8,
+          images: 1,
         },
         {
-          path: "3-proclamation",
+          path: "proclamation",
           name: "The Proclamation of the Kingdom of God",
           meditation:
             '"You are the salt of the earth; but if the salt has become tasteless, how can it be made salty again?"',
-          images: 4,
+          images: 1,
         },
         {
-          path: "4-transfiguration",
+          path: "transfiguration",
           name: "The Transfiguration of Jesus",
           meditation:
             "And while he was praying, the appearance of his face changed, and his clothes became dazzling white.",
-          images: 11,
+          images: 1,
         },
         {
-          path: "5-institution",
+          path: "institution",
           name: "The Institution of the Eucharist",
           meditation: '"This is my body, which is given for you. Do this in remembrance of me."',
-          images: 12,
+          images: 1,
         },
       ],
     },

@@ -1,3 +1,7 @@
+html {
+  font-size: 20px;
+}
+
 /* Helper classes */
 .no-click {
   cursor: default;
@@ -146,4 +150,9 @@
 
 .exit-fullscreen:hover {
   opacity: 1;
+}
+
+h1 img {
+  max-width:60.67px;
+  margin-right:10px;
 }
