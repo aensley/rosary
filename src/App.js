@@ -22,6 +22,8 @@ export default class App extends Component {
     this.state = {
       playing: false,
       indicators: true,
+      season: '',
+      category = this.rosary.getTodaysCategory(),
       mysteries: this.rosary.getMysteries(this.rosary.getTodaysCategory(), true, true, false),
       autohideCaptions: true,
       interval: false,
@@ -37,6 +39,35 @@ export default class App extends Component {
     this.noSleep = new NoSleep()
     this.category = this.rosary.getTodaysCategory()
     this.fullscreenCounter = 0
+  }
+
+  componentDidMount() {
+    const today = new Date().toLocaleDateString('en-CA')
+    fetch('https://liturgy.day/api/rosary-days/' + today, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' }
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        let category = this.category
+        for (var i in response['rosary-days']) {
+          if (response['rosary-days'][i].indexOf(this.today) !== -1) {
+            category = i;
+            break;
+          }
+        }
+
+        let season = response.season
+
+        this.setState({
+          mysteries: this.rosary.getMysteries(category, true, true, false),
+          category: category,
+          season: season
+        })
+
+        console.info('liturgy.day response', response)
+      })
+      .catch((err) => console.error(err))
   }
 
   setSliderRef (element) {
