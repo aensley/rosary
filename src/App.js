@@ -22,6 +22,9 @@ export default class App extends Component {
     this.state = {
       playing: false,
       indicators: true,
+      season: '',
+      category: this.rosary.getTodaysCategory(),
+      categoryThumbs: this.rosary.getCategories(),
       mysteries: this.rosary.getMysteries(this.rosary.getTodaysCategory(), true, true, false),
       autohideCaptions: true,
       interval: false,
@@ -37,6 +40,36 @@ export default class App extends Component {
     this.noSleep = new NoSleep()
     this.category = this.rosary.getTodaysCategory()
     this.fullscreenCounter = 0
+  }
+
+  componentDidMount() {
+    const today = new Date().toLocaleDateString('en-CA')
+    fetch('https://liturgy.day/api/rosary-days/' + today, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' }
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        let category = this.category
+        for (var i in response['rosary-days']) {
+          if (response['rosary-days'][i].indexOf(this.today) !== -1) {
+            category = i;
+            break;
+          }
+        }
+
+        let season = response.season
+
+        this.setState({
+          mysteries: this.rosary.getMysteries(category, true, true, false),
+          category: category,
+          categoryThumbs: this.rosary.getCategories(response['rosary-days']),
+          season: season
+        })
+
+        console.info('liturgy.day response', response)
+      })
+      .catch((err) => console.error(err))
   }
 
   setSliderRef (element) {
@@ -123,13 +156,18 @@ export default class App extends Component {
       <div>
         <main role='main'>
           <RosaryJumbotron
-            category={this.category}
+            category={this.state.category}
+            season={this.state.season}
             day={this.today}
             options={this.state.options}
             onOptionsChange={this.handleOptionsChange}
             launchAction={this.startSlider}
           />
-          <CategoryList launchAction={this.startSlider} />
+          <CategoryList
+            launchAction={this.startSlider}
+            category={this.state.category}
+            season={this.state.season}
+            categoryThumbs={this.state.categoryThumbs}/>
         </main>
         <Slider
           visible={this.state.playing}

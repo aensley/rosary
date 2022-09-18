@@ -175,14 +175,21 @@ export default class Rosary {
       .replace('${VARIANT}', 'f');
   }
 
-  getCategories() {
+  getCategories(categorySchedule) {
+    if (!categorySchedule) {
+      categorySchedule = {}
+      for (var i in this.rosary) {
+        categorySchedule[i] = this.rosary[i].days
+      }
+    }
+
     let categories = [],
       mystery;
     for (var i in this.rosary) {
       mystery = this.rosary[i].mysteries[randomNumber(0, 4)];
       categories.push({
         name: i,
-        days: this.rosary[i].days,
+        days: categorySchedule[i],
         src: this.getThumbSource(i, mystery.path, randomNumber(1, mystery.images)),
       });
     }

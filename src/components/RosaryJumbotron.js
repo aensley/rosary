@@ -20,7 +20,7 @@ export default class RosaryJumbotron extends Component {
     return (
       <Jumbotron className='text-center'>
         <h1 className='jumbotron-heading'><img src="/logo.png" /> Pray the Rosary</h1>
-        <p className='lead text-success'>{this.props.day}</p>
+        <p className={`lead text-success ${this.props.season}`}>{this.props.day}{ this.props.season ? <span>{this.props.season}</span> : null }</p>
         <p>
           <LaunchButton
             size='lg'
