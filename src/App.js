@@ -23,7 +23,8 @@ export default class App extends Component {
       playing: false,
       indicators: true,
       season: '',
-      category = this.rosary.getTodaysCategory(),
+      category: this.rosary.getTodaysCategory(),
+      categoryThumbs: this.rosary.getCategories(),
       mysteries: this.rosary.getMysteries(this.rosary.getTodaysCategory(), true, true, false),
       autohideCaptions: true,
       interval: false,
@@ -62,6 +63,7 @@ export default class App extends Component {
         this.setState({
           mysteries: this.rosary.getMysteries(category, true, true, false),
           category: category,
+          categoryThumbs: this.rosary.getCategories(response['rosary-days']),
           season: season
         })
 
@@ -154,13 +156,18 @@ export default class App extends Component {
       <div>
         <main role='main'>
           <RosaryJumbotron
-            category={this.category}
+            category={this.state.category}
+            season={this.state.season}
             day={this.today}
             options={this.state.options}
             onOptionsChange={this.handleOptionsChange}
             launchAction={this.startSlider}
           />
-          <CategoryList launchAction={this.startSlider} />
+          <CategoryList
+            launchAction={this.startSlider}
+            category={this.state.category}
+            season={this.state.season}
+            categoryThumbs={this.state.categoryThumbs}/>
         </main>
         <Slider
           visible={this.state.playing}

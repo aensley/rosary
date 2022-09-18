@@ -2,6 +2,15 @@ html {
   font-size: 20px;
 }
 
+/*.jumbotron > .lead > span {
+  margin-left: 8px;
+  padding-left: 8px;
+}*/
+
+.jumbotron > .lead > span::before {
+  content: ' in ';
+}
+
 /* Helper classes */
 .no-click {
   cursor: default;

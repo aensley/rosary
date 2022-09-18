@@ -13,7 +13,12 @@ export default class RosaryCard extends Component {
 
   render () {
     const card = this.props.card
-    const summary = card.days.join('s & ') + 's'
+    let summary = ''
+    if (card.days.length > 2) {
+      summary = card.days[0] + 's, ' + card.days[1] + 's, & ' + card.days[2] + 's'
+     } else {
+      summary = card.days.join('s & ') + 's'
+     }
     return (
       <Col md='6'>
         <Card className='mb-4 box-shadow' onClick={this.launch}>

@@ -11,7 +11,7 @@ export default class CategoryList extends Component {
       <div className='py-5 bg-light'>
         <Container>
           <Row>
-            {rosary.getCategories().map(function (card) {
+            {this.props.categoryThumbs.map(function (card) {
               return <RosaryCard card={card} key={card.name} launchAction={launchAction} />
             })}
           </Row>
