@@ -1,5 +1,5 @@
 export default class Rosary {
-  imgUrlTemplate = "https://i.ensl.ee/cdn-cgi/imagedelivery/nrDxkOKXwTWQqwFQgJIvZQ/rosary/${CATEGORY}/${MYSTERY}/${NUMBER}.jpg/${VARIANT}";
+  imgUrlTemplate = "/cdn-cgi/imagedelivery/nrDxkOKXwTWQqwFQgJIvZQ/rosary/${CATEGORY}/${MYSTERY}/${NUMBER}.jpg/${VARIANT}";
   rosary = {
     Glorious: {
       days: ["Sunday", "Wednesday"],
