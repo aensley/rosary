@@ -29,29 +29,28 @@ export default class Footer extends Component {
                     <ul>
                       <li>
                         <a
-                          href="https://www.usccb.org/how-to-pray-the-rosary"
+                          href='https://www.vatican.va/special/rosary/index_rosary.htm'
                           rel='noopener'
-                          target='_blank'
-                        >
-                          How to Pray the Rosary
+                          target='_blank'>
+                          Vatican: Resources for the Rosary
                         </a>
                       </li>
                       <li>
                         <a
-                          href="https://www.catholic.com/tract/the-rosary"
+                          href='https://www.usccb.org/how-to-pray-the-rosary'
                           rel='noopener'
                           target='_blank'
                         >
-                          The History of the Rosary
+                          USCCB: How to Pray the Rosary
                         </a>
                       </li>
                       <li>
                         <a
-                          href='https://lifeteen.com/blog/why-do-catholics-pray-the-rosary/'
+                          href='https://www.catholic.com/tract/the-rosary'
                           rel='noopener'
                           target='_blank'
                         >
-                          Why we pray the rosary
+                          Catholic Answers: The History of the Rosary
                         </a>
                       </li>
                     </ul>
@@ -73,7 +72,7 @@ export default class Footer extends Component {
           <p className='font-weight-light text-center mt-4'>
             <small>
               &copy;2022{' '}
-              <a href='https://andrewensley.com' rel='author noopener' target='_blank'>
+              <a href='https://andrewensley.com' rel='author' target='_blank'>
                 Andrew Ensley
               </a>
             </small>
