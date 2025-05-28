@@ -45,6 +45,7 @@ export default class Slider extends Component {
 
     this.setState({ mystery: this.transitioningTo, activeIndex: 0 })
     this.preload()
+    this.activity()
     return false
   }
 
@@ -59,6 +60,7 @@ export default class Slider extends Component {
     this.transitioningTo = this.prevIndex(this.state.mystery)
     this.setState({ mystery: this.transitioningTo, activeIndex: 0 })
     this.preload()
+    this.activity()
     return false
   }
 
