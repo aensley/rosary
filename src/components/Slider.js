@@ -141,8 +141,8 @@ export default class Slider extends Component {
       clearTimeout(this.activityTimeout)
     }
 
-    // Auto-hide carousel controls after 10 seconds
-    this.activityTimeout = setTimeout(this.activityDone, 10000)
+    // Auto-hide carousel controls after 8 seconds
+    this.activityTimeout = setTimeout(this.activityDone, 8000)
   }
 
   activityDone () {
