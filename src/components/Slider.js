@@ -35,7 +35,8 @@ export default class Slider extends Component {
     this.preload = this.preload.bind(this)
   }
 
-  nextMystery () {
+  nextMystery (e) {
+    e && e.stopPropagation()
     this.transitioningTo = this.nextIndex(this.state.mystery)
     if (this.transitioningTo === 0) {
       this.transitioningTo = this.state.mystery
@@ -44,9 +45,12 @@ export default class Slider extends Component {
 
     this.setState({ mystery: this.transitioningTo, activeIndex: 0 })
     this.preload()
+    this.activity()
+    return false
   }
 
-  prevMystery () {
+  prevMystery (e) {
+    e && e.stopPropagation()
     this.transitioningTo = this.prevIndex(this.state.mystery)
     if (this.transitioningTo === this.props.items.length - 1) {
       this.transitioningTo = this.state.mystery
@@ -56,6 +60,8 @@ export default class Slider extends Component {
     this.transitioningTo = this.prevIndex(this.state.mystery)
     this.setState({ mystery: this.transitioningTo, activeIndex: 0 })
     this.preload()
+    this.activity()
+    return false
   }
 
   nextIndex (referencePoint) {
@@ -84,7 +90,8 @@ export default class Slider extends Component {
     this.animating = false
   }
 
-  nextSlide () {
+  nextSlide (e) {
+    e && e.stopPropagation()
     if (this.animating) {
       return
     }
@@ -92,9 +99,11 @@ export default class Slider extends Component {
     const nextIndex =
       this.state.activeIndex === this.props.items[this.state.mystery].length - 1 ? 0 : this.state.activeIndex + 1
     this.setState({ activeIndex: nextIndex })
+    return false
   }
 
-  prevSlide () {
+  prevSlide (e) {
+    e && e.stopPropagation()
     if (this.animating) {
       return
     }
@@ -102,6 +111,7 @@ export default class Slider extends Component {
     const nextIndex =
       this.state.activeIndex === 0 ? this.props.items[this.state.mystery].length - 1 : this.state.activeIndex - 1
     this.setState({ activeIndex: nextIndex })
+    return false
   }
 
   goToIndex (newIndex) {
@@ -131,8 +141,8 @@ export default class Slider extends Component {
       clearTimeout(this.activityTimeout)
     }
 
-    // Auto-hide carousel controls after 5 seconds
-    this.activityTimeout = setTimeout(this.activityDone, 5000)
+    // Auto-hide carousel controls after 8 seconds
+    this.activityTimeout = setTimeout(this.activityDone, 8000)
   }
 
   activityDone () {
