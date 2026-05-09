@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Button, Card, CardBody, Collapse } from 'reactstrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faInfoCircle from '@fortawesome/fontawesome-free-solid/faInfoCircle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default class Footer extends Component {
   constructor (props) {
@@ -23,7 +23,7 @@ export default class Footer extends Component {
               <FontAwesomeIcon icon={faInfoCircle} /> <strong>More about the Rosary</strong>
             </Button>
             <Collapse isOpen={this.state.collapse}>
-                <Card className='text-left' style={{ cursor: 'default' }}>
+                <Card className='text-start' style={{ cursor: 'default' }}>
                   <CardBody>
                     <h3>More about the Rosary</h3>
                     <ul>
@@ -69,7 +69,7 @@ export default class Footer extends Component {
           </div>
         </Container>
         <Container className='clearfix'>
-          <p className='font-weight-light text-center mt-4'>
+          <p className='fw-light text-center mt-4'>
             <small>
               &copy;2022{' '}
               <a href='https://andrewensley.com' rel='author' target='_blank'>

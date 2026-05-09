@@ -8,7 +8,7 @@ export default class CategoryList extends Component {
     const rosary = new Rosary()
     const launchAction = this.props.launchAction
     return (
-      <div className='py-5 bg-light'>
+      <div className='py-5'>
         <Container>
           <Row>
             {this.props.categoryThumbs.map(function (card) {

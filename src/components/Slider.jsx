@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, Tooltip } from 'reactstrap'
 import Mousetrap from 'mousetrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faCompress from '@fortawesome/fontawesome-free-solid/faCompress'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCompress } from '@fortawesome/free-solid-svg-icons'
 
 export default class Slider extends Component {
   constructor (props) {
@@ -13,9 +13,7 @@ export default class Slider extends Component {
       controlsVisible: true,
       leftEnabled: false,
       rightEnabled: true,
-      efsTooltipOpen: false,
-      nextTooltipOpen: false,
-      prevTooltipOpen: false
+      efsTooltipOpen: false
     }
 
     this.transitioningTo = 0
@@ -28,8 +26,6 @@ export default class Slider extends Component {
     this.nextMystery = this.nextMystery.bind(this)
     this.prevMystery = this.prevMystery.bind(this)
     this.toggleEfsTooltip = this.toggleEfsTooltip.bind(this)
-    this.toggleNextTooltip = this.toggleNextTooltip.bind(this)
-    this.togglePrevTooltip = this.togglePrevTooltip.bind(this)
     this.activity = this.activity.bind(this)
     this.activityDone = this.activityDone.bind(this)
     this.preload = this.preload.bind(this)
@@ -126,14 +122,6 @@ export default class Slider extends Component {
     this.setState({ efsTooltipOpen: !this.state.efsTooltipOpen })
   }
 
-  toggleNextTooltip () {
-    this.setState({ nextTooltipOpen: !this.state.nextTooltipOpen })
-  }
-
-  togglePrevTooltip () {
-    this.setState({ prevTooltipOpen: !this.state.prevTooltipOpen })
-  }
-
   activity () {
     // Show carousel controls
     this.setState({ controlsVisible: true })
@@ -151,19 +139,16 @@ export default class Slider extends Component {
 
   exit (e) {
     e.stopPropagation()
-    this.setState({ efsTooltipOpen: false, nextTooltipOpen: false, prevTooltipOpen: false })
+    this.setState({ efsTooltipOpen: false })
     this.props.onExit()
   }
 
-  componentWillMount () {
+  componentDidMount () {
     Mousetrap.bind(['left'], this.prevMystery)
     Mousetrap.bind(['right'], this.nextMystery)
     Mousetrap.bind(['shift+left'], this.prevSlide)
     Mousetrap.bind(['shift+right'], this.nextSlide)
     Mousetrap.bind(['esc', 'backspace'], this.exit)
-  }
-
-  componentDidMount () {
     this.preload()
   }
 
@@ -173,7 +158,7 @@ export default class Slider extends Component {
     Mousetrap.unbind(['shift+left'], this.prevSlide)
     Mousetrap.unbind(['shift+right'], this.nextSlide)
     Mousetrap.unbind(['esc', 'backspace'], this.exit)
-    this.setState({ efsTooltipOpen: false, nextTooltipOpen: false, prevTooltipOpen: false })
+    this.setState({ efsTooltipOpen: false })
   }
 
   render () {
@@ -252,30 +237,16 @@ export default class Slider extends Component {
             onClickHandler={this.nextMystery}
           />
         </Carousel>
-        <FontAwesomeIcon icon={faCompress} onClick={this.exit} className='exit-fullscreen' />
+        <span id='exit-fullscreen-btn' className='exit-fullscreen' onClick={this.exit}>
+          <FontAwesomeIcon icon={faCompress} />
+        </span>
         <Tooltip
           placement='left'
           isOpen={this.state.efsTooltipOpen}
-          target='.exit-fullscreen'
+          target='exit-fullscreen-btn'
           toggle={this.toggleEfsTooltip}
         >
           Exit Slideshow
-        </Tooltip>
-        <Tooltip
-          placement='left'
-          isOpen={this.state.nextTooltipOpen}
-          target='.carousel-control-next'
-          toggle={this.toggleNextTooltip}
-        >
-          Next Mystery
-        </Tooltip>
-        <Tooltip
-          placement='right'
-          isOpen={this.state.prevTooltipOpen}
-          target='.carousel-control-prev'
-          toggle={this.togglePrevTooltip}
-        >
-          Previous Mystery
         </Tooltip>
       </div>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faPlayCircle from '@fortawesome/fontawesome-free-solid/faPlayCircle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default class LaunchButton extends Component {
   constructor (props) {

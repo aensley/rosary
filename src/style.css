@@ -36,7 +36,7 @@ html {
 }
 
 /* Carousel controls */
-.carousel-indicators li,
+.carousel-indicators button,
 .carousel-control-prev,
 .carousel-control-next {
   visibility: hidden;
@@ -48,7 +48,7 @@ html {
   visibility: hidden !important;
 }
 
-.active .carousel-indicators li,
+.active .carousel-indicators button,
 .active .carousel-control-prev,
 .active .carousel-control-next {
   visibility: visible;

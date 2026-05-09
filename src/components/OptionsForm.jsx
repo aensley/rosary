@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Label, Input } from 'reactstrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faImages from '@fortawesome/fontawesome-free-solid/faImages'
-import faImage from '@fortawesome/fontawesome-free-solid/faImage'
-import faHourglassHalf from '@fortawesome/fontawesome-free-solid/faHourglassHalf'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImages, faImage, faHourglassHalf } from '@fortawesome/free-solid-svg-icons'
 
 export default class OptionsForm extends Component {
   constructor (props) {
