@@ -3,28 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "react": "16.3.2",
-    "bootstrap": "4.1.1",
-    "mousetrap": "1.6.1",
-    "popper.js": "1.14.3",
-    "react-dom": "16.3.2",
-    "bootswatch": "4.1.1",
-    "prop-types": "15.6.1",
-    "reactstrap": "6.0.1",
-    "react-popper": "0.10.4",
-    "react-transition-group": "2.3.1",
-    "@fortawesome/fontawesome": "1.1.8",
-    "@fortawesome/react-fontawesome": "0.0.20",
-    "@fortawesome/fontawesome-free-solid": "5.0.13"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "bootswatch": "^5.3.3",
+    "mousetrap": "^1.6.5",
+    "prop-types": "^15.8.1",
+    "reactstrap": "^9.2.2",
+    "@popperjs/core": "^2.11.8",
+    "react-transition-group": "^4.4.5",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^3.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "react-scripts": "latest"
+    "vite": "^6.3.5",
+    "@vitejs/plugin-react": "^4.4.1"
   },
   "prettier": {
     "tabWidth": 2,

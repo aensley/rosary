@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Card, CardBody, Collapse, Jumbotron } from 'reactstrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faSlidersH from '@fortawesome/fontawesome-free-solid/faSlidersH'
+import { Button, Card, CardBody, Collapse } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import LaunchButton from './LaunchButton'
 import OptionsForm from './OptionsForm'
 
@@ -18,7 +18,7 @@ export default class RosaryJumbotron extends Component {
 
   render () {
     return (
-      <Jumbotron className='text-center'>
+      <div className='p-5 mb-4 bg-light rounded-3 text-center'>
         <h1 className='jumbotron-heading'><img src="/logo.png" /> Pray the Rosary</h1>
         <p className={`lead text-success ${this.props.season}`}>{this.props.day}{ this.props.season ? <span>{this.props.season}</span> : null }</p>
         <p>
@@ -34,14 +34,14 @@ export default class RosaryJumbotron extends Component {
         </p>
         <Collapse isOpen={this.state.collapse}>
           <div style={{ maxWidth: 326, margin: '0 auto' }}>
-            <Card className='text-left'>
+            <Card className='text-start'>
               <CardBody>
                 <OptionsForm options={this.props.options} onOptionsChange={this.props.onOptionsChange} />
               </CardBody>
             </Card>
           </div>
         </Collapse>
-      </Jumbotron>
+      </div>
     )
   }
 }
