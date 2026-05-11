@@ -18,7 +18,7 @@ export default class RosaryJumbotron extends Component {
 
   render() {
     return (
-      <div className="p-5 mb-4 bg-light rounded-3 text-center">
+      <div className="jumbotron p-5 mb-4 bg-light rounded-3 text-center">
         <h1 className="jumbotron-heading">
           <img src="/logo.png" /> Pray the Rosary
         </h1>

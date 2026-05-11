@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Label, Input } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImages, faImage, faHourglassHalf } from '@fortawesome/free-solid-svg-icons'
+import { faImages, faImage, faHourglassHalf, faPhotoFilm } from '@fortawesome/free-solid-svg-icons'
 
 export default class OptionsForm extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class OptionsForm extends Component {
     this.autohideChange = this.autohideChange.bind(this)
     this.meditationChange = this.meditationChange.bind(this)
     this.nameChange = this.nameChange.bind(this)
+    this.qualityChange = this.qualityChange.bind(this)
   }
 
   handleSubmit(e) {
@@ -45,6 +46,12 @@ export default class OptionsForm extends Component {
   nameChange() {
     const newOptions = this.props.options
     newOptions.names = !this.props.options.names
+    this.props.onOptionsChange(newOptions)
+  }
+
+  qualityChange(e) {
+    const newOptions = this.props.options
+    newOptions.quality = e.target.value
     this.props.onOptionsChange(newOptions)
   }
 
@@ -122,6 +129,31 @@ export default class OptionsForm extends Component {
             />
           </FormGroup>
         </div>
+        <hr />
+        <FormGroup tag="fieldset">
+          <Label>
+            <FontAwesomeIcon icon={faPhotoFilm} /> Image quality
+          </Label>
+          {[
+            { label: '4K', value: 'q' },
+            { label: 'Full HD', value: 'h' },
+            { label: 'HD', value: 'i' },
+            { label: 'SD', value: 'd' }
+          ].map(({ label, value }) => (
+            <FormGroup check key={value}>
+              <Label check>
+                <Input
+                  type="radio"
+                  name="quality"
+                  value={value}
+                  onChange={this.qualityChange}
+                  checked={this.props.options.quality === value}
+                />{' '}
+                {label}
+              </Label>
+            </FormGroup>
+          ))}
+        </FormGroup>
       </Form>
     )
   }

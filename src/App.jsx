@@ -8,6 +8,14 @@ import RosaryJumbotron from './components/RosaryJumbotron'
 import Footer from './components/Footer'
 import Slider from './components/Slider'
 
+function getDefaultQuality() {
+  const largest = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1)
+  if (largest >= 3840) return 'q'
+  if (largest >= 1920) return 'h'
+  if (largest >= 1280) return 'i'
+  return 'd'
+}
+
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +41,8 @@ export default class App extends Component {
         names: true,
         meditations: true,
         autohideCaptions: true,
-        delay: 30
+        delay: 30,
+        quality: getDefaultQuality()
       }
     }
 
@@ -81,7 +90,13 @@ export default class App extends Component {
     const options = this.state.options
     this.setState({
       playing: true,
-      mysteries: this.rosary.getMysteries(newMysteries, options.cycle, options.names, options.meditations),
+      mysteries: this.rosary.getMysteries(
+        newMysteries,
+        options.cycle,
+        options.names,
+        options.meditations,
+        options.quality
+      ),
       autohideCaptions: options.autohideCaptions,
       interval: options.cycle ? options.delay * 1000 : false,
       indicators: options.cycle

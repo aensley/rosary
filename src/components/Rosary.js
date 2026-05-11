@@ -198,15 +198,15 @@ export default class Rosary {
     return categories
   }
 
-  getFullSource(category, mystery, number) {
+  getFullSource(category, mystery, number, quality) {
     return this.imgUrlTemplate
       .replace('${CATEGORY}', category.toLowerCase())
       .replace('${MYSTERY}', mystery)
       .replace('${NUMBER}', number)
-      .replace('${VARIANT}', 'q')
+      .replace('${VARIANT}', quality || 'q')
   }
 
-  getMysteries(category, cycle, names, meditations) {
+  getMysteries(category, cycle, names, meditations, quality) {
     let mysteries = [],
       images,
       mystery,
@@ -224,7 +224,7 @@ export default class Rosary {
       // Loop through each image.
       for (let j = 0; j < iLength; j++) {
         images.push({
-          src: this.getFullSource(category, mystery.path, numbers[j]),
+          src: this.getFullSource(category, mystery.path, numbers[j], quality),
           name: name,
           meditation: meditation
         })
