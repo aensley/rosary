@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImages, faImage, faHourglassHalf } from '@fortawesome/free-solid-svg-icons'
 
 export default class OptionsForm extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.cycleChange = this.cycleChange.bind(this)
@@ -14,54 +14,54 @@ export default class OptionsForm extends Component {
     this.nameChange = this.nameChange.bind(this)
   }
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault()
   }
 
-  cycleChange (e) {
+  cycleChange(e) {
     const newOptions = this.props.options
     newOptions.cycle = e.target.value === '1'
     this.props.onOptionsChange(newOptions)
   }
 
-  delayChange (e) {
+  delayChange(e) {
     const newOptions = this.props.options
     newOptions.delay = parseInt(e.target.value)
     this.props.onOptionsChange(newOptions)
   }
 
-  autohideChange () {
+  autohideChange() {
     const newOptions = this.props.options
     newOptions.autohideCaptions = !this.props.options.autohideCaptions
     this.props.onOptionsChange(newOptions)
   }
 
-  meditationChange () {
+  meditationChange() {
     const newOptions = this.props.options
     newOptions.meditations = !this.props.options.meditations
     this.props.onOptionsChange(newOptions)
   }
 
-  nameChange () {
+  nameChange() {
     const newOptions = this.props.options
     newOptions.names = !this.props.options.names
     this.props.onOptionsChange(newOptions)
   }
 
-  render () {
+  render() {
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormGroup check>
           <Label check>
-            <Input type='checkbox' name='showNames' onChange={this.nameChange} checked={this.props.options.names} />{' '}
+            <Input type="checkbox" name="showNames" onChange={this.nameChange} checked={this.props.options.names} />{' '}
             Show mystery <strong>names</strong>
           </Label>
         </FormGroup>
         <FormGroup check>
           <Label check>
             <Input
-              type='checkbox'
-              name='showMeditations'
+              type="checkbox"
+              name="showMeditations"
               onChange={this.meditationChange}
               checked={this.props.options.meditations}
             />{' '}
@@ -71,8 +71,8 @@ export default class OptionsForm extends Component {
         <FormGroup check>
           <Label check>
             <Input
-              type='checkbox'
-              name='autohideCaptions'
+              type="checkbox"
+              name="autohideCaptions"
               onChange={this.autohideChange}
               checked={this.props.options.autohideCaptions}
             />{' '}
@@ -80,13 +80,13 @@ export default class OptionsForm extends Component {
           </Label>
         </FormGroup>
         <hr />
-        <FormGroup tag='fieldset'>
+        <FormGroup tag="fieldset">
           <FormGroup check>
             <Label check>
               <Input
-                type='radio'
-                name='cycle'
-                value='0'
+                type="radio"
+                name="cycle"
+                value="0"
                 onChange={this.cycleChange}
                 checked={!this.props.options.cycle}
               />{' '}
@@ -96,9 +96,9 @@ export default class OptionsForm extends Component {
           <FormGroup check>
             <Label check>
               <Input
-                type='radio'
-                name='cycle'
-                value='1'
+                type="radio"
+                name="cycle"
+                value="1"
                 onChange={this.cycleChange}
                 checked={this.props.options.cycle}
               />{' '}
@@ -109,16 +109,16 @@ export default class OptionsForm extends Component {
         <div className={this.props.options.cycle ? '' : 'd-none'}>
           <hr />
           <FormGroup>
-            <Label for='delay'>
+            <Label for="delay">
               <FontAwesomeIcon icon={faHourglassHalf} /> Delay between images (seconds)
             </Label>
             <Input
-              type='number'
-              name='delay'
-              id='delay'
+              type="number"
+              name="delay"
+              id="delay"
               onChange={this.delayChange}
               value={this.props.options.delay}
-              min='1'
+              min="1"
             />
           </FormGroup>
         </div>

@@ -3,29 +3,29 @@ import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, 
 import LaunchButton from './LaunchButton'
 
 export default class Header extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.toggle = this.toggle.bind(this)
     this.state = { isOpen: false }
   }
 
-  toggle () {
+  toggle() {
     this.setState({ isOpen: !this.state.isOpen })
   }
 
-  render () {
+  render() {
     return (
       <header>
-        <Navbar color='dark' dark expand='xs'>
+        <Navbar color="dark" dark expand="xs">
           <Container>
-            <NavbarBrand href='/'>
+            <NavbarBrand href="/">
               <strong>Rosary</strong>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
+              <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href='#' className='text-success no-click'>
+                  <NavLink href="#" className="text-success no-click">
                     {this.props.day}
                   </NavLink>
                 </NavItem>

@@ -1,11 +1,6 @@
-# Logs
-npm-debug.log*
-
 # Compiled site
 build/
-
 # Dependency directories
 node_modules/
-
 # Optional npm cache directory
 .npm

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompress } from '@fortawesome/free-solid-svg-icons'
 
 export default class Slider extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       activeIndex: 0,
@@ -31,7 +31,7 @@ export default class Slider extends Component {
     this.preload = this.preload.bind(this)
   }
 
-  nextMystery (e) {
+  nextMystery(e) {
     e && e.stopPropagation()
     this.transitioningTo = this.nextIndex(this.state.mystery)
     if (this.transitioningTo === 0) {
@@ -45,7 +45,7 @@ export default class Slider extends Component {
     return false
   }
 
-  prevMystery (e) {
+  prevMystery(e) {
     e && e.stopPropagation()
     this.transitioningTo = this.prevIndex(this.state.mystery)
     if (this.transitioningTo === this.props.items.length - 1) {
@@ -60,33 +60,33 @@ export default class Slider extends Component {
     return false
   }
 
-  nextIndex (referencePoint) {
+  nextIndex(referencePoint) {
     return referencePoint === this.props.items.length - 1 ? 0 : referencePoint + 1
   }
 
-  prevIndex (referencePoint) {
+  prevIndex(referencePoint) {
     return referencePoint === 0 ? this.props.items.length - 1 : referencePoint - 1
   }
 
-  preload () {
+  preload() {
     this.preloadImage(this.props.items[this.nextIndex(this.transitioningTo)][0].src)
     this.preloadImage(this.props.items[this.prevIndex(this.transitioningTo)][0].src)
   }
 
-  preloadImage (url) {
+  preloadImage(url) {
     const img = document.createElement('img')
     img.src = url
   }
 
-  onExiting () {
+  onExiting() {
     this.animating = true
   }
 
-  onExited () {
+  onExited() {
     this.animating = false
   }
 
-  nextSlide (e) {
+  nextSlide(e) {
     e && e.stopPropagation()
     if (this.animating) {
       return
@@ -98,7 +98,7 @@ export default class Slider extends Component {
     return false
   }
 
-  prevSlide (e) {
+  prevSlide(e) {
     e && e.stopPropagation()
     if (this.animating) {
       return
@@ -110,7 +110,7 @@ export default class Slider extends Component {
     return false
   }
 
-  goToIndex (newIndex) {
+  goToIndex(newIndex) {
     if (this.animating) {
       return
     }
@@ -118,11 +118,11 @@ export default class Slider extends Component {
     this.setState({ activeIndex: newIndex })
   }
 
-  toggleEfsTooltip () {
+  toggleEfsTooltip() {
     this.setState({ efsTooltipOpen: !this.state.efsTooltipOpen })
   }
 
-  activity () {
+  activity() {
     // Show carousel controls
     this.setState({ controlsVisible: true })
     if (this.activityTimeout) {
@@ -133,17 +133,17 @@ export default class Slider extends Component {
     this.activityTimeout = setTimeout(this.activityDone, 8000)
   }
 
-  activityDone () {
+  activityDone() {
     this.setState({ controlsVisible: false })
   }
 
-  exit (e) {
+  exit(e) {
     e.stopPropagation()
     this.setState({ efsTooltipOpen: false })
     this.props.onExit()
   }
 
-  componentDidMount () {
+  componentDidMount() {
     Mousetrap.bind(['left'], this.prevMystery)
     Mousetrap.bind(['right'], this.nextMystery)
     Mousetrap.bind(['shift+left'], this.prevSlide)
@@ -152,7 +152,7 @@ export default class Slider extends Component {
     this.preload()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     Mousetrap.unbind(['left'], this.prevMystery)
     Mousetrap.unbind(['right'], this.nextMystery)
     Mousetrap.unbind(['shift+left'], this.prevSlide)
@@ -161,12 +161,12 @@ export default class Slider extends Component {
     this.setState({ efsTooltipOpen: false })
   }
 
-  render () {
+  render() {
     const slides = this.props.items[this.state.mystery].map((item) => {
       return (
         <CarouselItem onExiting={this.onExiting} onExited={this.onExited} key={item.src}>
-          <img src={item.src} alt={item.name} className='img-fluid' />
-          <CarouselCaption className='caption' captionText={item.meditation} captionHeader={item.name} />
+          <img src={item.src} alt={item.name} className="img-fluid" />
+          <CarouselCaption className="caption" captionText={item.meditation} captionHeader={item.name} />
         </CarouselItem>
       )
     })
@@ -213,11 +213,10 @@ export default class Slider extends Component {
           previous={this.prevSlide}
           keyboard={false}
           pause={false}
-          ride='carousel'
+          ride="carousel"
           interval={this.props.interval}
           slide={false}
-          className='carousel-fade'
-        >
+          className="carousel-fade">
           <CarouselIndicators
             items={this.props.items[this.state.mystery]}
             activeIndex={this.state.activeIndex}
@@ -225,27 +224,26 @@ export default class Slider extends Component {
           />
           {slides}
           <CarouselControl
-            direction='prev'
-            directionText='Previous'
+            direction="prev"
+            directionText="Previous"
             className={this.state.mystery === 0 ? 'disabled ' : ''}
             onClickHandler={this.prevMystery}
           />
           <CarouselControl
-            direction='next'
-            directionText='Next'
+            direction="next"
+            directionText="Next"
             className={this.state.mystery === this.props.items.length - 1 ? 'disabled ' : ''}
             onClickHandler={this.nextMystery}
           />
         </Carousel>
-        <span id='exit-fullscreen-btn' className='exit-fullscreen' onClick={this.exit}>
+        <span id="exit-fullscreen-btn" className="exit-fullscreen" onClick={this.exit}>
           <FontAwesomeIcon icon={faCompress} />
         </span>
         <Tooltip
-          placement='left'
+          placement="left"
           isOpen={this.state.efsTooltipOpen}
-          target='exit-fullscreen-btn'
-          toggle={this.toggleEfsTooltip}
-        >
+          target="exit-fullscreen-btn"
+          toggle={this.toggleEfsTooltip}>
           Exit Slideshow
         </Tooltip>
       </div>

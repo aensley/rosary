@@ -9,7 +9,7 @@ import Footer from './components/Footer'
 import Slider from './components/Slider'
 
 export default class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.rosary = new Rosary()
     this.today = this.rosary.getToday()
@@ -46,15 +46,15 @@ export default class App extends Component {
     const today = new Date().toLocaleDateString('en-CA')
     fetch('https://liturgy.day/api/rosary-days/' + today, {
       method: 'GET',
-      headers: { 'Accept': 'application/json' }
+      headers: { Accept: 'application/json' }
     })
       .then((response) => response.json())
       .then((response) => {
         let category = this.category
         for (var i in response['rosary-days']) {
           if (response['rosary-days'][i].indexOf(this.today) !== -1) {
-            category = i;
-            break;
+            category = i
+            break
           }
         }
 
@@ -72,11 +72,11 @@ export default class App extends Component {
       .catch((err) => console.error(err))
   }
 
-  setSliderRef (element) {
+  setSliderRef(element) {
     this.sliderElement = element
   }
 
-  startSlider (newMysteries) {
+  startSlider(newMysteries) {
     this.noSleep.enable()
     const options = this.state.options
     this.setState({
@@ -109,11 +109,11 @@ export default class App extends Component {
     }
   }
 
-  handleOptionsChange (newOptions) {
+  handleOptionsChange(newOptions) {
     this.setState({ options: newOptions })
   }
 
-  stopSlider () {
+  stopSlider() {
     this.setState({
       playing: false,
       interval: false
@@ -130,7 +130,7 @@ export default class App extends Component {
     }
   }
 
-  fullscreenChange () {
+  fullscreenChange() {
     this.fullscreenCounter++
     if (this.fullscreenCounter % 2 === 0) {
       this.stopSlider()
@@ -138,7 +138,7 @@ export default class App extends Component {
     }
   }
 
-  stopListening () {
+  stopListening() {
     if (document.onfullscreenchange) {
       document.removeEventListener('onfullscreenchange', this.fullscreenChange)
     } else if (document.onwebkitfullscreenchange) {
@@ -150,11 +150,11 @@ export default class App extends Component {
     }
   }
 
-  render () {
+  render() {
     // let unused = <Header category={this.category} day={this.today} launchAction={this.startSlider} />; // Unused header
     return (
       <div>
-        <main role='main'>
+        <main role="main">
           <RosaryJumbotron
             category={this.state.category}
             season={this.state.season}
@@ -167,7 +167,8 @@ export default class App extends Component {
             launchAction={this.startSlider}
             category={this.state.category}
             season={this.state.season}
-            categoryThumbs={this.state.categoryThumbs}/>
+            categoryThumbs={this.state.categoryThumbs}
+          />
         </main>
         <Slider
           visible={this.state.playing}
