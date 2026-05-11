@@ -4,11 +4,11 @@ import RosaryCard from './RosaryCard'
 import Rosary from './Rosary'
 
 export default class CategoryList extends Component {
-  render () {
+  render() {
     const rosary = new Rosary()
     const launchAction = this.props.launchAction
     return (
-      <div className='py-5'>
+      <div className="py-5">
         <Container>
           <Row>
             {this.props.categoryThumbs.map(function (card) {

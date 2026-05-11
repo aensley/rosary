@@ -2,27 +2,37 @@
   "name": "rosary",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "build": "vite build",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "pre-commit-msg": "echo Running pre-commit checks...",
+    "prepare-hook": "echo 'exec < /dev/tty && node_modules/.bin/cz --hook || true' > .git/hooks/prepare-commit-msg && chmod +x .git/hooks/prepare-commit-msg",
+    "preview": "vite preview",
+    "setup": "npm ci && npm run prepare-hook",
+    "start": "vite",
+    "test": "npm run lint"
+  },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^3.1.1",
+    "@popperjs/core": "^2.11.8",
     "bootswatch": "^5.3.3",
     "mousetrap": "^1.6.5",
     "prop-types": "^15.8.1",
-    "reactstrap": "^9.2.2",
-    "@popperjs/core": "^2.11.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-transition-group": "^4.4.5",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^3.1.1"
-  },
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "reactstrap": "^9.2.2"
   },
   "devDependencies": {
-    "vite": "^6.3.5",
-    "@vitejs/plugin-react": "^4.4.1"
+    "@vitejs/plugin-react": "^4.4.1",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "pre-commit": "^2.0.0",
+    "prettier": "^3.8.3",
+    "vite": "^6.3.5"
   },
   "prettier": {
     "tabWidth": 2,
@@ -55,5 +65,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "pre-commit": {
+    "run": [
+      "pre-commit-msg",
+      "test"
+    ],
+    "silent": true,
+    "colors": true
   }
 }
