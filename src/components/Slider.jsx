@@ -208,6 +208,7 @@ export default class Slider extends Component {
         // onScroll={this.activity}
       >
         <Carousel
+          key={this.props.interval}
           activeIndex={this.state.activeIndex}
           next={this.nextSlide}
           previous={this.prevSlide}
