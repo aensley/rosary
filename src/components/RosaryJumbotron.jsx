@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card, CardBody, Collapse } from 'reactstrap'
+import { Button, Card, Collapse } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import LaunchButton from './LaunchButton'
@@ -33,16 +33,16 @@ export default class RosaryJumbotron extends Component {
             category={this.props.category}
             launchAction={this.props.launchAction}
           />{' '}
-          <Button color="secondary" size="lg" onClick={this.toggle}>
+          <Button variant="secondary" size="lg" onClick={this.toggle}>
             <FontAwesomeIcon icon={faSlidersH} /> Options
           </Button>
         </p>
-        <Collapse isOpen={this.state.collapse}>
+        <Collapse in={this.state.collapse}>
           <div style={{ maxWidth: 326, margin: '0 auto' }}>
             <Card className="text-start">
-              <CardBody>
+              <Card.Body>
                 <OptionsForm options={this.props.options} onOptionsChange={this.props.onOptionsChange} />
-              </CardBody>
+              </Card.Body>
             </Card>
           </div>
         </Collapse>

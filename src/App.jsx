@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-// https://reactstrap.github.io/
 import NoSleep from './components/NoSleep'
-// import Header from './components/Header';
 import Rosary from './components/Rosary'
 import CategoryList from './components/CategoryList'
 import RosaryJumbotron from './components/RosaryJumbotron'
@@ -169,7 +167,6 @@ export default class App extends Component {
   }
 
   render() {
-    // let unused = <Header category={this.category} day={this.today} launchAction={this.startSlider} />; // Unused header
     return (
       <div>
         <main role="main">
