@@ -72,7 +72,10 @@ export default class App extends Component {
         this.setState({
           mysteries: this.rosary.getMysteries(category, true, true, false),
           category: category,
-          categoryThumbs: this.rosary.getCategories(response['rosary-days']),
+          categoryThumbs: this.rosary.getCategories(response['rosary-days']).map((cat) => {
+            const existing = this.state.categoryThumbs.find((t) => t.name === cat.name)
+            return existing ? { ...cat, src: existing.src } : cat
+          }),
           season: season
         })
 

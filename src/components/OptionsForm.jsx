@@ -113,22 +113,6 @@ export default class OptionsForm extends Component {
             </Label>
           </FormGroup>
         </FormGroup>
-        <div className={this.props.options.cycle ? '' : 'd-none'}>
-          <hr />
-          <FormGroup>
-            <Label for="delay">
-              <FontAwesomeIcon icon={faHourglassHalf} /> Delay between images (seconds)
-            </Label>
-            <Input
-              type="number"
-              name="delay"
-              id="delay"
-              onChange={this.delayChange}
-              value={this.props.options.delay}
-              min="1"
-            />
-          </FormGroup>
-        </div>
         <hr />
         <FormGroup tag="fieldset">
           <Label>
@@ -154,6 +138,22 @@ export default class OptionsForm extends Component {
             </FormGroup>
           ))}
         </FormGroup>
+        <div className={this.props.options.cycle ? '' : 'd-none'}>
+          <hr />
+          <FormGroup>
+            <Label for="delay">
+              <FontAwesomeIcon icon={faHourglassHalf} /> Delay between images (seconds)
+            </Label>
+            <Input
+              type="number"
+              name="delay"
+              id="delay"
+              onChange={this.delayChange}
+              value={this.props.options.delay}
+              min="1"
+            />
+          </FormGroup>
+        </div>
       </Form>
     )
   }
