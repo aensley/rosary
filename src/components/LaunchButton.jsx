@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'reactstrap'
+import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,7 +16,7 @@ export default class LaunchButton extends Component {
   render() {
     const size = this.props.size || 'md'
     return (
-      <Button outline={this.props.outline} color="primary" onClick={this.launch} size={size}>
+      <Button variant={this.props.outline ? 'outline-primary' : 'primary'} onClick={this.launch} size={size}>
         <FontAwesomeIcon icon={faPlayCircle} /> {this.props.text}
       </Button>
     )

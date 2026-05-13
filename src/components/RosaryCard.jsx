@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardImg, CardBody, CardTitle, CardText, Col } from 'reactstrap'
+import { Card, Col } from 'react-bootstrap'
 
 export default class RosaryCard extends Component {
   constructor(props) {
@@ -22,11 +22,11 @@ export default class RosaryCard extends Component {
     return (
       <Col md="6">
         <Card className="mb-4 box-shadow" onClick={this.launch}>
-          <CardImg top width="100%" alt={card.name} src={card.src} />
-          <CardBody>
-            <CardTitle>{card.name} Mysteries</CardTitle>
-            <CardText className="text-success">{summary}</CardText>
-          </CardBody>
+          <Card.Img variant="top" alt={card.name} src={card.src} />
+          <Card.Body>
+            <Card.Title>{card.name} Mysteries</Card.Title>
+            <Card.Text className="text-success">{summary}</Card.Text>
+          </Card.Body>
         </Card>
       </Col>
     )

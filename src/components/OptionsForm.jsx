@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, Label, Input } from 'reactstrap'
+import { Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImages, faImage, faHourglassHalf, faPhotoFilm } from '@fortawesome/free-solid-svg-icons'
 
@@ -58,93 +58,97 @@ export default class OptionsForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" name="showNames" onChange={this.nameChange} checked={this.props.options.names} />{' '}
-            Show mystery <strong>names</strong>
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input
-              type="checkbox"
-              name="showMeditations"
-              onChange={this.meditationChange}
-              checked={this.props.options.meditations}
-            />{' '}
-            Show mystery <strong>meditations</strong>
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input
-              type="checkbox"
-              name="autohideCaptions"
-              onChange={this.autohideChange}
-              checked={this.props.options.autohideCaptions}
-            />{' '}
-            Autohide captions
-          </Label>
-        </FormGroup>
+        <Form.Check
+          type="checkbox"
+          id="showNames"
+          name="showNames"
+          onChange={this.nameChange}
+          checked={this.props.options.names}
+          label={
+            <span>
+              Show mystery <strong>names</strong>
+            </span>
+          }
+        />
+        <Form.Check
+          type="checkbox"
+          id="showMeditations"
+          name="showMeditations"
+          onChange={this.meditationChange}
+          checked={this.props.options.meditations}
+          label={
+            <span>
+              Show mystery <strong>meditations</strong>
+            </span>
+          }
+        />
+        <Form.Check
+          type="checkbox"
+          id="autohideCaptions"
+          name="autohideCaptions"
+          onChange={this.autohideChange}
+          checked={this.props.options.autohideCaptions}
+          label="Autohide captions"
+        />
         <hr />
-        <FormGroup tag="fieldset">
-          <FormGroup check>
-            <Label check>
-              <Input
-                type="radio"
-                name="cycle"
-                value="0"
-                onChange={this.cycleChange}
-                checked={!this.props.options.cycle}
-              />{' '}
-              <FontAwesomeIcon icon={faImage} /> One image per mystery
-            </Label>
-          </FormGroup>
-          <FormGroup check>
-            <Label check>
-              <Input
-                type="radio"
-                name="cycle"
-                value="1"
-                onChange={this.cycleChange}
-                checked={this.props.options.cycle}
-              />{' '}
-              <FontAwesomeIcon icon={faImages} /> Multiple images per mystery
-            </Label>
-          </FormGroup>
-        </FormGroup>
+        <fieldset>
+          <Form.Check
+            type="radio"
+            id="cycleOff"
+            name="cycle"
+            value="0"
+            onChange={this.cycleChange}
+            checked={!this.props.options.cycle}
+            label={
+              <>
+                <FontAwesomeIcon icon={faImage} /> One image per mystery
+              </>
+            }
+          />
+          <Form.Check
+            type="radio"
+            id="cycleOn"
+            name="cycle"
+            value="1"
+            onChange={this.cycleChange}
+            checked={this.props.options.cycle}
+            label={
+              <>
+                <FontAwesomeIcon icon={faImages} /> Multiple images per mystery
+              </>
+            }
+          />
+        </fieldset>
         <hr />
-        <FormGroup tag="fieldset">
-          <Label>
+        <fieldset>
+          <Form.Label>
             <FontAwesomeIcon icon={faPhotoFilm} /> Image quality
-          </Label>
+          </Form.Label>
           {[
             { label: '4K', value: 'q' },
             { label: 'Full HD', value: 'h' },
             { label: 'HD', value: 'i' },
             { label: 'SD', value: 'd' }
           ].map(({ label, value }) => (
-            <FormGroup check key={value}>
-              <Label check>
-                <Input
-                  type="radio"
-                  name="quality"
-                  value={value}
-                  onChange={this.qualityChange}
-                  checked={this.props.options.quality === value}
-                />{' '}
-                {label}
-              </Label>
-            </FormGroup>
+            <Form.Check
+              type="radio"
+              key={value}
+              id={`quality-${value}`}
+              name="quality"
+              value={value}
+              onChange={this.qualityChange}
+              checked={this.props.options.quality === value}
+              label={label}
+            />
           ))}
-        </FormGroup>
+        </fieldset>
         <div className={this.props.options.cycle ? '' : 'd-none'}>
           <hr />
-          <FormGroup>
-            <Label for="delay">
+          <Form.Group>
+            <Form.Label htmlFor="delay">
               <FontAwesomeIcon icon={faHourglassHalf} /> Delay between images (seconds)
-            </Label>
-            <Input
+            </Form.Label>
+            <Form.Control
               type="number"
               name="delay"
               id="delay"
@@ -152,7 +156,7 @@ export default class OptionsForm extends Component {
               value={this.props.options.delay}
               min="1"
             />
-          </FormGroup>
+          </Form.Group>
         </div>
       </Form>
     )

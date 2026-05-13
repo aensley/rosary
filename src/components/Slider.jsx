@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, Tooltip } from 'reactstrap'
+import { Carousel, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import Mousetrap from 'mousetrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompress } from '@fortawesome/free-solid-svg-icons'
@@ -10,10 +10,7 @@ export default class Slider extends Component {
     this.state = {
       activeIndex: 0,
       mystery: 0,
-      controlsVisible: true,
-      leftEnabled: false,
-      rightEnabled: true,
-      efsTooltipOpen: false
+      controlsVisible: true
     }
 
     this.transitioningTo = 0
@@ -21,11 +18,8 @@ export default class Slider extends Component {
     this.nextSlide = this.nextSlide.bind(this)
     this.prevSlide = this.prevSlide.bind(this)
     this.goToIndex = this.goToIndex.bind(this)
-    this.onExiting = this.onExiting.bind(this)
-    this.onExited = this.onExited.bind(this)
     this.nextMystery = this.nextMystery.bind(this)
     this.prevMystery = this.prevMystery.bind(this)
-    this.toggleEfsTooltip = this.toggleEfsTooltip.bind(this)
     this.activity = this.activity.bind(this)
     this.activityDone = this.activityDone.bind(this)
     this.preload = this.preload.bind(this)
@@ -78,20 +72,8 @@ export default class Slider extends Component {
     img.src = url
   }
 
-  onExiting() {
-    this.animating = true
-  }
-
-  onExited() {
-    this.animating = false
-  }
-
   nextSlide(e) {
     e && e.stopPropagation()
-    if (this.animating) {
-      return
-    }
-
     const nextIndex =
       this.state.activeIndex === this.props.items[this.state.mystery].length - 1 ? 0 : this.state.activeIndex + 1
     this.setState({ activeIndex: nextIndex })
@@ -100,10 +82,6 @@ export default class Slider extends Component {
 
   prevSlide(e) {
     e && e.stopPropagation()
-    if (this.animating) {
-      return
-    }
-
     const nextIndex =
       this.state.activeIndex === 0 ? this.props.items[this.state.mystery].length - 1 : this.state.activeIndex - 1
     this.setState({ activeIndex: nextIndex })
@@ -111,25 +89,15 @@ export default class Slider extends Component {
   }
 
   goToIndex(newIndex) {
-    if (this.animating) {
-      return
-    }
-
     this.setState({ activeIndex: newIndex })
   }
 
-  toggleEfsTooltip() {
-    this.setState({ efsTooltipOpen: !this.state.efsTooltipOpen })
-  }
-
   activity() {
-    // Show carousel controls
     this.setState({ controlsVisible: true })
     if (this.activityTimeout) {
       clearTimeout(this.activityTimeout)
     }
 
-    // Auto-hide carousel controls after 8 seconds
     this.activityTimeout = setTimeout(this.activityDone, 8000)
   }
 
@@ -139,7 +107,6 @@ export default class Slider extends Component {
 
   exit(e) {
     e.stopPropagation()
-    this.setState({ efsTooltipOpen: false })
     this.props.onExit()
   }
 
@@ -148,6 +115,7 @@ export default class Slider extends Component {
     Mousetrap.bind(['right'], this.nextMystery)
     Mousetrap.bind(['shift+left'], this.prevSlide)
     Mousetrap.bind(['shift+right'], this.nextSlide)
+    Mousetrap.bind(['up', 'down'], this.activity)
     Mousetrap.bind(['esc', 'backspace'], this.exit)
     this.preload()
   }
@@ -157,17 +125,20 @@ export default class Slider extends Component {
     Mousetrap.unbind(['right'], this.nextMystery)
     Mousetrap.unbind(['shift+left'], this.prevSlide)
     Mousetrap.unbind(['shift+right'], this.nextSlide)
+    Mousetrap.unbind(['up', 'down'], this.activity)
     Mousetrap.unbind(['esc', 'backspace'], this.exit)
-    this.setState({ efsTooltipOpen: false })
   }
 
   render() {
     const slides = this.props.items[this.state.mystery].map((item) => {
       return (
-        <CarouselItem onExiting={this.onExiting} onExited={this.onExited} key={item.src}>
+        <Carousel.Item key={item.src}>
           <img src={item.src} alt={item.name} className="img-fluid" />
-          <CarouselCaption className="caption" captionText={item.meditation} captionHeader={item.name} />
-        </CarouselItem>
+          <Carousel.Caption className="caption d-none">
+            <h3>{item.name}</h3>
+            <p>{item.meditation}</p>
+          </Carousel.Caption>
+        </Carousel.Item>
       )
     })
 
@@ -189,64 +160,38 @@ export default class Slider extends Component {
         onTouchCancel={this.activity}
         onTouchMove={this.activity}
         onTouchStart={this.activity}
-        onWheel={this.activity}
-
-        // onBlur={this.activity}
-        // onFocus={this.activity}
-        // onInput={this.activity}
-        // onKeyPress={this.activity}
-        // onKeyUp={this.activity}
-        // onMouseDown={this.activity}
-        // onMouseUp={this.activity}
-        // onPointerEnter={this.activity}
-        // onPointerLeave={this.activity}
-        // onPointerMove={this.activity}
-        // onPointerOut={this.activity}
-        // onPointerOver={this.activity}
-        // onPointerUp={this.activity}
-        // onResize={this.activity}
-        // onScroll={this.activity}
-      >
+        onWheel={this.activity}>
         <Carousel
           key={this.props.interval}
           activeIndex={this.state.activeIndex}
-          next={this.nextSlide}
-          previous={this.prevSlide}
+          onSelect={this.goToIndex}
           keyboard={false}
           pause={false}
-          ride="carousel"
           interval={this.props.interval}
           slide={false}
-          className="carousel-fade">
-          <CarouselIndicators
-            items={this.props.items[this.state.mystery]}
-            activeIndex={this.state.activeIndex}
-            onClickHandler={this.goToIndex}
-          />
+          controls={false}
+          indicators={this.props.indicators}>
           {slides}
-          <CarouselControl
-            direction="prev"
-            directionText="Previous"
-            className={this.state.mystery === 0 ? 'disabled ' : ''}
-            onClickHandler={this.prevMystery}
-          />
-          <CarouselControl
-            direction="next"
-            directionText="Next"
-            className={this.state.mystery === this.props.items.length - 1 ? 'disabled ' : ''}
-            onClickHandler={this.nextMystery}
-          />
         </Carousel>
-        <span id="exit-fullscreen-btn" className="exit-fullscreen" onClick={this.exit}>
-          <FontAwesomeIcon icon={faCompress} />
-        </span>
-        <Tooltip
-          placement="left"
-          isOpen={this.state.efsTooltipOpen}
-          target="exit-fullscreen-btn"
-          toggle={this.toggleEfsTooltip}>
-          Exit Slideshow
-        </Tooltip>
+        <button
+          className={`carousel-control-prev${this.state.mystery === 0 ? ' disabled' : ''}`}
+          onClick={this.prevMystery}
+          type="button">
+          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className={`carousel-control-next${this.state.mystery === this.props.items.length - 1 ? ' disabled' : ''}`}
+          onClick={this.nextMystery}
+          type="button">
+          <span className="carousel-control-next-icon" aria-hidden="true" />
+          <span className="visually-hidden">Next</span>
+        </button>
+        <OverlayTrigger placement="left" overlay={<Tooltip>Exit Slideshow</Tooltip>}>
+          <span className="exit-fullscreen" onClick={this.exit}>
+            <FontAwesomeIcon icon={faCompress} />
+          </span>
+        </OverlayTrigger>
       </div>
     )
   }
